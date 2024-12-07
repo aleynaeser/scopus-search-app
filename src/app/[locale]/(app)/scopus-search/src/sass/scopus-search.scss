@@ -1,11 +1,11 @@
 #scopus-search {
-  #scopus-search-bar {
+  .scopus-search-form {
     position: relative;
     z-index: 10;
 
     .subject-select {
       position: absolute;
-      right: 24px;
+      right: 0;
       top: 50%;
       transform: translateY(-50%);
       width: 180px;

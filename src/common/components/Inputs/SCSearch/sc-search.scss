@@ -1,0 +1,93 @@
+.sc-search {
+  position: relative;
+  min-width: 240px;
+
+  .search-input {
+    width: 100%;
+    height: var(--size-24);
+    padding-left: var(--space-24);
+    padding-right: var(--space-2);
+    border: none;
+    background-color: transparent;
+
+    &::placeholder {
+      color: var(--font-color-secondary);
+    }
+  }
+
+  .search-button {
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    transform: translateY(-50%);
+
+    // * Search icon animation * //
+    &::before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 66%;
+      left: 68%;
+      width: 1px;
+      height: 5px;
+      border-radius: var(--border-radius-high);
+      background-color: var(--theme-color-10);
+      transform: translate(-50%, -50%) rotate(-45deg);
+      transition: all var(--transition-duration-fast) ease-in-out;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 40%;
+      left: 45%;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: 1px solid var(--theme-color-10);
+      transform: translate(-50%, -50%) rotate(0deg);
+      transition: all var(--transition-duration-fast) ease-in-out;
+    }
+
+    &:hover {
+      &::before {
+        background-color: var(--theme-color-3);
+      }
+
+      &::after {
+        border-color: var(--theme-color-3);
+      }
+
+      &.close {
+        &::before,
+        &::after {
+          background-color: var(--theme-color-10);
+        }
+      }
+    }
+
+    &.close {
+      &::before {
+        top: 50%;
+        left: 50%;
+        height: 10px;
+        width: 1px;
+        background-color: var(--theme-color-3);
+      }
+
+      &::after {
+        top: 50%;
+        left: 50%;
+        width: 1px;
+        height: 10px;
+        border: none;
+        background-color: var(--theme-color-3);
+        border-radius: var(--border-radius-high);
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+    }
+  }
+}

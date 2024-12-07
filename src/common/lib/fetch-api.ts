@@ -19,7 +19,8 @@ export interface IApiConfig {
 }
 
 export const createConfig = async (config: IApiConfig) => {
-  const baseURL = process.env.NEXT_PUBLIC_SERVICE_URI + '/';
+  // const baseURL = process.env.NEXT_PUBLIC_SERVICE_URI + '/';
+  const baseURL = 'https://api.elsevier.com/content/search/scopus' + '/';
   const path = config.path ? baseURL + config.path : baseURL;
 
   const headers: { [key: string]: string } = {

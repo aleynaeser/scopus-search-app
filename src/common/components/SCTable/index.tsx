@@ -58,8 +58,6 @@ export default function SCTable<TData>({
       const query = flattenedFilters?.query ?? searchParams?.query;
       const subj = flattenedFilters?.subject ?? searchParams?.subj;
 
-      console.log(start, query, subj, 'start, query, subj');
-
       const result = await renderer({ start, query, subj });
 
       setQuery(

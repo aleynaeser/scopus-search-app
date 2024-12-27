@@ -1,5 +1,5 @@
+import { motion } from 'framer-motion';
 import { InputHTMLAttributes, useMemo } from 'react';
-import { MotionDiv } from '@components/Layout/Motion';
 import { getIn, Field, FieldConfig, FormikErrors, FormikValues, ErrorMessage, useFormikContext } from 'formik';
 import SCIcon from '@components/SCIcon';
 import classNames from 'classnames';
@@ -66,11 +66,11 @@ export default function FormItem({
 
       <ErrorMessage name={name}>
         {(errorMessage) => (
-          <MotionDiv className='input-error' {...shakeVariants(true)}>
+          <motion.div className='input-error' {...shakeVariants(true)}>
             <SCIcon icon='sc-exclamation-mark' color='5' size='20' />
 
             <div className='error-message'>{errorMessage}</div>
-          </MotionDiv>
+          </motion.div>
         )}
       </ErrorMessage>
     </div>

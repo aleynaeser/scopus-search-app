@@ -1,5 +1,7 @@
+'use client';
+
 import classNames from 'classnames';
-import { MotionAside, MotionDiv, MotionForm, MotionMain, MotionSection, MotionHeader } from '../Motion';
+import { motion } from 'framer-motion';
 
 import './layout-card.scss';
 
@@ -8,7 +10,7 @@ export interface ILayoutCard {
   className?: string;
   children?: React.ReactNode;
   animateDuration?: number;
-  containerTag?: 'div' | 'section' | 'main' | 'aside' | 'header';
+  containerTag?: 'div' | 'section';
 }
 
 export default function LayoutCard({
@@ -19,12 +21,8 @@ export default function LayoutCard({
   containerTag = 'div',
 }: ILayoutCard) {
   const motionMap = {
-    div: MotionDiv,
-    section: MotionSection,
-    main: MotionMain,
-    aside: MotionAside,
-    header: MotionHeader,
-    form: MotionForm,
+    div: motion.div,
+    section: motion.section,
   };
 
   const Card = motionMap[containerTag];

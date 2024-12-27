@@ -11,8 +11,8 @@ import {
   getPaginationRowModel,
   ColumnFiltersState,
 } from '@tanstack/react-table';
-import { LayoutCard } from '@components/Layout';
 import classNames from 'classnames';
+import LayoutCard from '@components/LayoutCard';
 import TableHead from './src/components/TableHead';
 import TableBody from './src/components/TableBody';
 import useTableColumns from './src/helpers/useTableColumns';
@@ -46,7 +46,7 @@ export default function SCTable<TData>({
     pageIndex: searchParams.start ? Number(searchParams.start) : 0,
   });
 
-  const { data: queryResponse, isLoading } = useQuery<TServiceListResponse<TData>>({
+  const { data: queryResponse } = useQuery<TServiceListResponse<TData>>({
     queryKey: [tableKey, pagination.pageIndex, pagination.pageSize, columnFilters],
     initialData: isFirstRender.current ? initialData : undefined,
     enabled: !(isFirstRender.current && initialData),
@@ -60,14 +60,11 @@ export default function SCTable<TData>({
 
       const result = await renderer({ start, query, subj });
 
-      setQuery(
-        [
-          { id: 'start', value: start },
-          { id: 'query', value: query },
-          { id: 'subject', value: subj },
-        ],
-        true,
-      );
+      setQuery([
+        { id: 'start', value: start },
+        { id: 'query', value: query },
+        { id: 'subject', value: subj },
+      ]);
 
       return result;
     },
@@ -119,13 +116,12 @@ export default function SCTable<TData>({
         className={classNames(`sc-table-container`, {
           [className!]: className,
           empty: totalResults <= 0,
-          loading: isLoading,
         })}
       >
         <div className='sc-table-wrapper'>
           <table className='sc-table'>
             <TableHead<TData> table={table} />
-            <TableBody<TData> table={table} isLoading={isLoading} />
+            <TableBody<TData> table={table} />
           </table>
         </div>
 

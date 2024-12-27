@@ -2,12 +2,12 @@
 
 import { useMemo } from 'react';
 import { Form, Formik } from 'formik';
-import { LayoutCard } from '@components/Layout';
 import { SelectInput } from '@components/Inputs';
 import { subjectOptions } from '@common/constants';
 import { IScopusSearchEntry } from '../interfaces';
 import { useMutation } from '@tanstack/react-query';
 import { TSearchComponent } from '@components/SCTable/src/interface/table.interface';
+import LayoutCard from '@components/LayoutCard';
 import SCSearch from '@components/Inputs/SCSearch';
 
 export default function ScopusSearchBar({ table }: TSearchComponent<IScopusSearchEntry>) {
@@ -37,6 +37,7 @@ export default function ScopusSearchBar({ table }: TSearchComponent<IScopusSearc
     }),
     [columnFilters],
   );
+  
   return (
     <LayoutCard id='scopus-search-bar' containerTag='section'>
       <Formik

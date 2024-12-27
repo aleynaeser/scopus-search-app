@@ -16,18 +16,16 @@
     "incremental": true,
     "plugins": [{ "name": "next" }],
     "paths": {
-      "@scopus-search/*": ["./src/app/[locale]/(app)/scopus-search/*"],
+      "@scopus-search/*": ["./src/app/scopus-search/*"],
       "@components/*": ["./src/common/components/*"],
       "@fonts/*": ["./src/assets/fonts/*"],
       "@icons/*": ["./src/assets/icons/*"],
       "@sass/*": ["./src/common/sass/*"],
       "@common/*": ["./src/common/*"],
       "@helpers/*": ["./src/helpers/*"],
-      "@middleware/*": ["./src/common/middleware/*"],
-      "@i18n/*": ["./src/i18n/*"],
       "@/*": ["./src/*"],
       "@root/*": ["./*"],
-      "@app/*": ["./src/app/[locale]/(app)/*"]
+      "@app/*": ["./src/app/*"]
     },
     "experimentalDecorators": true,
     "strictPropertyInitialization": false

@@ -1,7 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
-import { usePathname } from '@i18n/routing';
+import { useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 export type TQueryParams = {
@@ -11,13 +10,9 @@ export type TQueryParams = {
 
 export function useQueryString() {
   const searchParams = useSearchParams();
-  const pathname = usePathname();
-
-  const [query, setQueryString] = useState<string>('');
-  const [queryParams, setQueryParams] = useState<TQueryParams[]>([]);
 
   const setQuery = useCallback(
-    (params: TQueryParams[], push = false) => {
+    (params: TQueryParams[]) => {
       const newParams = new URLSearchParams(searchParams.toString());
 
       const manipulatedParams = params
@@ -36,13 +31,11 @@ export function useQueryString() {
         .filter(Boolean);
 
       const manipulatedParamsString = manipulatedParams.join('&');
-      setQueryParams(params);
-      setQueryString(manipulatedParamsString);
-      if (push) window.history.pushState({}, '', pathname + '?' + manipulatedParamsString);
+      window.history.pushState({}, '', '?' + manipulatedParamsString);
       return manipulatedParamsString;
     },
-    [searchParams, pathname],
+    [searchParams],
   );
 
-  return { query, queryParams, setQuery };
+  return { setQuery };
 }

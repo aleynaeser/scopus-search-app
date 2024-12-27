@@ -16,18 +16,11 @@ export default function TableHead<TData>({ table }: ITableHead<TData>) {
         return (
           <tr key={headerGroup.id} className='table-head-row'>
             {headerGroup.headers.map((header) => {
-              const actionsCell = header.column.id.startsWith('_actions');
-              const headClassName = header.column.columnDef.meta?.headClassName;
               const headWidth = header.column.columnDef.meta?.width ?? undefined;
               const headStyle = { width: headWidth, minWidth: headWidth };
 
               return (
-                <th
-                  key={header.id}
-                  style={headStyle}
-                  colSpan={header.colSpan}
-                  className={classNames(`head-row`, { [headClassName!]: headClassName, 'head-actions-row': actionsCell })}
-                >
+                <th key={header.id} style={headStyle} colSpan={header.colSpan} className={classNames(`head-row`)}>
                   {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                 </th>
               );

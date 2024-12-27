@@ -17,8 +17,6 @@ export interface ISCTable<TData extends RowData> extends Omit<TableOptions<TData
 
 declare module '@tanstack/react-table' {
   interface ColumnMeta<TData extends RowData, TValue> {
-    rowClassName?: ((row: Row<TData>) => string) | string;
-    headClassName?: string;
     formatter?: string;
     width?: string;
   }

@@ -3,33 +3,16 @@ import classNames from 'classnames';
 
 interface ITableBody<TData> {
   table: Table<TData>;
-  isLoading?: boolean;
 }
 
-export default function TableBody<TData>({ table, isLoading }: ITableBody<TData>) {
+export default function TableBody<TData>({ table }: ITableBody<TData>) {
   const rowModel = table.getRowModel();
-  const columnLength = table.getVisibleFlatColumns().length;
 
-  return isLoading ? (
-    <tbody className={classNames(`sc-table-tbody loading`)}>
-      {Array.from(Array(table.getState().pagination.pageSize).keys()).map((index) => (
-        <tr key={index} className='loading-skeleton-row'>
-          <td colSpan={columnLength} className={classNames(`skeleton-data`)}>
-            <div className='loading-skeleton' />
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  ) : (
+  return (
     <tbody className='sc-table-tbody'>
       {rowModel.rows.map((row) => (
         <tr key={row.id} className='table-row'>
           {row.getVisibleCells().map((cell) => {
-            const rowClassName =
-              typeof cell.column.columnDef.meta?.rowClassName === 'function'
-                ? cell.column.columnDef.meta?.rowClassName(cell.row)
-                : cell.column.columnDef.meta?.rowClassName;
-
             const isCellContextExist = Array.isArray(cell.getContext().getValue())
               ? (cell.getContext().getValue() as Array<unknown>).length > 0
               : cell.getContext().getValue();
@@ -43,7 +26,6 @@ export default function TableBody<TData>({ table, isLoading }: ITableBody<TData>
               <td
                 key={cell.id}
                 className={classNames('row-data', {
-                  [rowClassName!]: rowClassName,
                   'action-row-data': cell.column.id === '_actions',
                 })}
               >
